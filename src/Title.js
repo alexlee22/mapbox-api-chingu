@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { simpleAction } from './actions/simpleAction'
+import { simpleAction, setToggleMenu } from './actions/simpleAction'
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -25,25 +25,23 @@ class Title extends Component {
     this.setState({ classes: 'asd' });
   }
 
-  handleClick = () => {
-    console.log('asd')
-  }
-
   render() {
     const { classes } = this.state
-    const { simpleAction } = this.props
+    const { setToggleMenu, setHideMenu } = this.props
     if (classes) {
       return (
         <div>
           <AppBar position="fixed">
             <Toolbar>
-              <IconButton edge="start" color="inherit" aria-label="menu">
+              <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => { setToggleMenu() }}>
                 <MenuIcon />
               </IconButton>
               <Typography variant="h6">
                 Chingu-Mapbox
               </Typography>
-              <Button onClick={() => { simpleAction() }} styles={{float: 'right'}} color="inherit">Login</Button>
+              <Button styles={{float: 'right'}} color="inherit" onClick={() => {  }} >
+                Login
+              </Button>
             </Toolbar>
           </AppBar>
         </div>
@@ -57,10 +55,6 @@ class Title extends Component {
 
 }
 
-//<IconButton edge="start" className={styles.menuButton} color="inherit" aria-label="menu">
-//<Typography variant="h6" className={styles.title}>
-//export default Title;
-
 
 const mapStateToProps = state => ({
   ...state
@@ -68,6 +62,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   simpleAction: () => dispatch(simpleAction()),
+  setToggleMenu: () => dispatch(setToggleMenu())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Title);
+

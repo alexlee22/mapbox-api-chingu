@@ -4,7 +4,7 @@ export const geoJSON = {
     {
       "type": "Feature",
       "properties": {
-        'name': 'A'
+        'name': 'Sydney Opera House'
       },
       "geometry": {
         "type": "Point",
@@ -17,7 +17,7 @@ export const geoJSON = {
     {
       "type": "Feature",
       "properties": {
-        'name': 'B'
+        'name': 'Barangaroo'
       },
       "geometry": {
         "type": "Point",
@@ -30,7 +30,7 @@ export const geoJSON = {
     {
       "type": "Feature",
       "properties": {
-        'name': 'C'
+        'name': 'Circular Quay'
       },
       "geometry": {
         "type": "Point",

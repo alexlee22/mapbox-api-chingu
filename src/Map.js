@@ -1,48 +1,9 @@
 import React, { Component }  from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
 import { connect } from 'react-redux';
-
+import { searchFilterData } from './selector'
 
 const MAPBOX_KEY = ''
-
-const geoJSON = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          151.2152087688446,
-          -33.85682062506368
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          151.20174407958982,
-          -33.86137329543402
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          151.21084213256836,
-          -33.86122184063587
-        ]
-      }
-    }
-  ]
-}
 
 class Map extends Component {
     constructor(props) {
@@ -74,32 +35,45 @@ class Map extends Component {
     };
 
     render() {
+      console.log(this.props)
       return (
         <ReactMapGL
           {...this.state.viewport}
           mapboxApiAccessToken={MAPBOX_KEY}
           onViewportChange={(viewport) => this.setState({viewport})}
         >
-          { geoJSON.features.map((d, idx) =>
-            <Marker key={idx} longitude={d.geometry.coordinates[0]} latitude={d.geometry.coordinates[1]} offsetLeft={-20} offsetTop={-10}>
-              <div>You are here</div>
-            </Marker>
-          )}
+          { this.props.filteredData &&
+            <React.Fragment>
+              { this.props.filteredData.map((d, idx) =>
+                <Marker key={idx} longitude={d.geometry.coordinates[0]} latitude={d.geometry.coordinates[1]} offsetLeft={-20} offsetTop={-10}>
+                  <div>{d.properties.name}</div>
+                </Marker>
+              ) }
+            </React.Fragment>
+          }
         </ReactMapGL>
       );
     };
 }
 
 const mapStateToProps = state => ({
-  ...state
+  ...state,
+  filteredData: searchFilterData(state)
 })
 
 const mapDispatchToProps = dispatch => ({
-  //simpleAction: (e) => dispatch(simpleAction(e)),
-  //setPureData: (e) => dispatch(setPureData(e))
-  //setUpdateSearch: (e) => dispatch(setUpdateSearch(e))
+  //simpleAction: (e) => dispatch(simpleAction(e))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Map);
 
 //https://github.com/uber/react-map-gl/blob/master/docs/components/marker.md
+
+
+/*
+{ geoJSON.features.map((d, idx) =>
+            <Marker key={idx} longitude={d.geometry.coordinates[0]} latitude={d.geometry.coordinates[1]} offsetLeft={-20} offsetTop={-10}>
+              <div>You are here</div>
+            </Marker>
+          )}
+          */

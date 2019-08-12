@@ -11,14 +11,16 @@ import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-
+//import Fade from '@material-ui/core/Fade';
+import Slide from '@material-ui/core/Slide';
 
 const StyledPaper = styled(Paper)({
     position: 'absolute',
     top: '75px',
     padding: '10px',
     width: '250px',
-    marginLeft: '20px',
+    //marginLeft: '20px',
+    left: '25px',
     zIndex: 1
 });
 
@@ -35,7 +37,6 @@ class Menu extends Component {
   }
 
   handleSearchText = (e) => {
-    this.setState({search: e.target.value});
     this.props.setUpdateSearch(e.target.value);
   }
 
@@ -45,30 +46,34 @@ class Menu extends Component {
 
   render() {
     return(
-      <StyledPaper position="fixed">
-        <Typography variant="h5">Search Menu</Typography>
-        <TextField
-            id="search-field"
-            label="Search Name..."
-            value={this.state.search}
-            onChange={(e) => {this.handleSearchText(e)}}
-            margin="normal"
-        />
-        <Divider />
-        <List component="nav">
-          <ListItem button>
-            <ListItemText primary="Trash" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Spam" />
-          </ListItem>
-        </List>
-
-      </StyledPaper>
+      <Slide direction="right" in={this.props.app.showMenu} mountOnEnter unmountOnExit>
+        <StyledPaper position="fixed">
+          <Typography variant="h5">Search Menu</Typography>
+          <TextField
+              id="search-field"
+              label="Search Name..."
+              value={this.props.app.search}
+              onChange={(e) => {this.handleSearchText(e)}}
+              margin="normal"
+          />
+          <Divider />
+          <List component="nav">
+            <ListItem button>
+              <ListItemText primary="Trash" />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Spam" />
+            </ListItem>
+          </List>
+        </StyledPaper>
+      </Slide>
     )
   }
 
 }
+
+//value={this.state.search}
+//https://github.com/uber/react-map-gl/blob/5.0-release/examples/viewport-animation/src/app.js
 
 const mapStateToProps = state => ({
   ...state

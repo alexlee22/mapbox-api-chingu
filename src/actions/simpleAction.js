@@ -12,9 +12,9 @@ export const setPureData = (payload) => dispatch => {
   })
 }
 
-export const setHideMenu = (payload) => dispatch => {
+export const setToggleMenu = (payload) => dispatch => {
   dispatch({
-    type: 'SET_HIDEMENU',
+    type: 'SET_TOGGLEMENU',
     payload: payload
   })
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { simpleAction, setPureData } from './actions/simpleAction';
+import { searchFilterData } from './selector'
 
 import {createMuiTheme} from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
@@ -22,14 +23,6 @@ const theme = createMuiTheme({
 });
 
 class App extends Component {
-  /*
-  simpleAction = (event) => {
-    this.props.simpleAction();
-  }
-  setPureData = (event) => {
-    this.props.setPureData();
-  }
-  */
 
   componentDidMount = () => {
     this.props.setPureData(geoJSON);
@@ -51,7 +44,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state
+  ...state,
+  filteredData: searchFilterData(state)
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -60,4 +54,5 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
 
