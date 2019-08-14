@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { simpleAction } from './actions/simpleAction'
 import { setUpdateSearch } from './actions/simpleAction';
+import { searchFilterData } from './selector'
 
 import { styled } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
@@ -11,7 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-//import Fade from '@material-ui/core/Fade';
+import Fade from '@material-ui/core/Fade';
 import Slide from '@material-ui/core/Slide';
 
 const StyledPaper = styled(Paper)({
@@ -19,7 +19,6 @@ const StyledPaper = styled(Paper)({
     top: '75px',
     padding: '10px',
     width: '250px',
-    //marginLeft: '20px',
     left: '25px',
     zIndex: 1
 });
@@ -45,6 +44,7 @@ class Menu extends Component {
   }
 
   render() {
+    //console.log(this.props.filteredData)
     return(
       <Slide direction="right" in={this.props.app.showMenu} mountOnEnter unmountOnExit>
         <StyledPaper position="fixed">
@@ -57,14 +57,17 @@ class Menu extends Component {
               margin="normal"
           />
           <Divider />
+          { this.props.filteredData &&
           <List component="nav">
-            <ListItem button>
-              <ListItemText primary="Trash" />
+            { this.props.filteredData.map((d, idx) => 
+            <ListItem button key={d.properties.name}>
+              <ListItemText primary={d.properties.name} />
             </ListItem>
-            <ListItem button>
-              <ListItemText primary="Spam" />
-            </ListItem>
+            )}
           </List>
+          }
+
+          
         </StyledPaper>
       </Slide>
     )
@@ -76,7 +79,8 @@ class Menu extends Component {
 //https://github.com/uber/react-map-gl/blob/5.0-release/examples/viewport-animation/src/app.js
 
 const mapStateToProps = state => ({
-  ...state
+  ...state,
+  filteredData: searchFilterData(state)
 })
 
 const mapDispatchToProps = dispatch => ({

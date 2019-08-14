@@ -35,7 +35,6 @@ class Map extends Component {
     };
 
     render() {
-      console.log(this.props)
       return (
         <ReactMapGL
           {...this.state.viewport}

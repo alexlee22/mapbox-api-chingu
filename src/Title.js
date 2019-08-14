@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Link from '@material-ui/core/Link';
 
 class Title extends Component {
   constructor(props) {
@@ -33,15 +34,19 @@ class Title extends Component {
         <div>
           <AppBar position="fixed">
             <Toolbar>
+              
               <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => { setToggleMenu() }}>
                 <MenuIcon />
               </IconButton>
-              <Typography variant="h6">
+              <Typography variant="h6" style={{flexGrow: 1}} >
                 Chingu-Mapbox
               </Typography>
-              <Button styles={{float: 'right'}} color="inherit" onClick={() => {  }} >
-                Login
+              <Button variant="contained" color="inherit" >
+                <Link target="_blank" href={"https://github.com/alexlee22/mapbox-api-chingu"} >
+                  GitHub
+                </Link>
               </Button>
+
             </Toolbar>
           </AppBar>
         </div>
