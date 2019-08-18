@@ -25,3 +25,10 @@ export const setUpdateSearch = (payload) => dispatch => {
     payload: payload
   })
 }
+
+export const setMap = (payload) => dispatch => {
+  dispatch({
+    type: 'SET_MAPBOX',
+    payload: payload
+  })
+}

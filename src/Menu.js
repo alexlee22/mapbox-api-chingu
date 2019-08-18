@@ -39,12 +39,13 @@ class Menu extends Component {
     this.props.setUpdateSearch(e.target.value);
   }
 
-  componentDidMount = () => {
-    //this.setState({ classes: 'asd' });
+  // Jump to location on map
+  handelJumpToMap = (d) => {
+    let map = this.props.app.map
+    map.flyTo({ center: d.geometry.coordinates });
   }
 
   render() {
-    //console.log(this.props.filteredData)
     return(
       <Slide direction="right" in={this.props.app.showMenu} mountOnEnter unmountOnExit>
         <StyledPaper position="fixed">
@@ -60,7 +61,7 @@ class Menu extends Component {
           { this.props.filteredData &&
           <List component="nav">
             { this.props.filteredData.map((d, idx) => 
-            <ListItem button key={d.properties.name}>
+            <ListItem button key={d.properties.name} onClick={ (() => this.handelJumpToMap(d)) }>
               <ListItemText primary={d.properties.name} />
             </ListItem>
             )}

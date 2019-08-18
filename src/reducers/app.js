@@ -1,7 +1,10 @@
+import { geoJSON } from '../const.js'
+
 const initialState = {
-  pureData: null,
+  pureData: geoJSON,
   search: "",
-  showMenu: false
+  showMenu: false,
+  map: null
 }
 
 export default (state = initialState, action) => {
@@ -12,6 +15,8 @@ export default (state = initialState, action) => {
       return { ...state, search: action.payload };
     case 'SET_TOGGLEMENU':
       return { ...state, showMenu: !state.showMenu };
+    case 'SET_MAPBOX':
+      return { ...state, map: action.payload };
     default:
       return state
   }

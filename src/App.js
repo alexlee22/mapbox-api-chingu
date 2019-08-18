@@ -6,7 +6,8 @@ import { searchFilterData } from './selector'
 import {createMuiTheme} from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
-import Map from './Map';
+//import Map from './Map';
+import Maptwo from './Maptwo';
 import Title from './Title';
 import Menu from './Menu';
 import { geoJSON } from './const.js'
@@ -29,19 +30,20 @@ class App extends Component {
   }
 
   render() {
-    console.log('App', this.props)
     return (
       <div className="App">
         <MuiThemeProvider theme={theme}>
           <Title />
           <Menu />
-          <Map />
+          <Maptwo />
         </MuiThemeProvider>
       </div>
     );
   }
 
 }
+
+//<Map />
 
 const mapStateToProps = state => ({
   ...state,
