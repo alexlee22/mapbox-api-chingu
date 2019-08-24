@@ -11,16 +11,22 @@ import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Fade from '@material-ui/core/Fade';
+//import Fade from '@material-ui/core/Fade';
 import Slide from '@material-ui/core/Slide';
 
 const StyledPaper = styled(Paper)({
     position: 'absolute',
-    top: '75px',
-    padding: '10px',
+    top: '50px',
+    padding: '0 10px',
     width: '250px',
-    left: '25px',
-    zIndex: 1
+    maxHeight: 'calc(100vh - 50px)',
+    right: '0px',
+    zIndex: 1,
+    overflow: 'scroll'
+});
+
+const StyledTextField = styled(TextField)({
+  width: '100%'
 });
 
 class Menu extends Component {
@@ -46,13 +52,13 @@ class Menu extends Component {
   }
 
   render() {
+    
     return(
-      <Slide direction="right" in={this.props.app.showMenu} mountOnEnter unmountOnExit>
+      <Slide direction="top" in={this.props.app.showMenu} mountOnEnter unmountOnExit>
         <StyledPaper position="fixed">
-          <Typography variant="h5">Search Menu</Typography>
-          <TextField
+          <StyledTextField
               id="search-field"
-              label="Search Name..."
+              label="Landmark Name"
               value={this.props.app.search}
               onChange={(e) => {this.handleSearchText(e)}}
               margin="normal"
@@ -65,7 +71,13 @@ class Menu extends Component {
               <ListItemText primary={d.properties.name} />
             </ListItem>
             )}
+            { this.props.filteredData.length === 0 &&
+            <ListItem>
+              <ListItemText primary="Could not find landmark." style={{ color: 'grey'}} />
+            </ListItem>
+            }
           </List>
+          
           }
 
           

@@ -28,24 +28,20 @@ class Title extends Component {
 
   render() {
     const { classes } = this.state
-    const { setToggleMenu, setHideMenu } = this.props
+    const { setToggleMenu } = this.props
     if (classes) {
       return (
         <div>
           <AppBar position="fixed">
             <Toolbar>
               
-              <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => { setToggleMenu() }}>
-                <MenuIcon />
-              </IconButton>
+              
               <Typography variant="h6" style={{flexGrow: 1}} >
                 Chingu-Mapbox
               </Typography>
-              <Button variant="contained" color="inherit" >
-                <Link target="_blank" href={"https://github.com/alexlee22/mapbox-api-chingu"} >
-                  GitHub
-                </Link>
-              </Button>
+              <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => { setToggleMenu() }}>
+                <MenuIcon />
+              </IconButton>
 
             </Toolbar>
           </AppBar>

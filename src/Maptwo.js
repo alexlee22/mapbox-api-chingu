@@ -14,25 +14,32 @@ class Maptwo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          markers: null
+          markers: null,
+          loaded: false
         }
     }   
     
     // Update markers based on search
     componentDidUpdate() {
-      
+
+      // Check if everything has loaded
       if (this.props.filteredData && this.state.markers) {
+        
+        //List of marker Names, to check
         let activeMarkers = this.props.filteredData.map((d) => {
           return(d.properties.name);
         });
-
+        
+        // For each marker, toggle visibility based on menu search
         this.props.app.pureData.features.map((d) => {
+        // Get marker element and assign its visiblity
           let element = this.state.markers[d.properties.name].getElement();
           if (activeMarkers.includes(d.properties.name)) {
             element.style.visibility = "visible";
           } else {
             element.style.visibility = "hidden";
           }
+          return d;
           
         })
       }
@@ -41,6 +48,7 @@ class Maptwo extends Component {
     
     //Make map + assign markers
     componentDidMount() {
+        // Create map
         this.map = new mapboxgl.Map({
           container: this.mapContainer,
           style: 'mapbox://styles/mapbox/dark-v9',
@@ -49,16 +57,17 @@ class Maptwo extends Component {
         });
         
         this.map.on('load', () => {
+          // Paste all marker on map when map has loaded
           let markers = this.props.filteredData.reduce((result, d) => {
             var marker = new mapboxgl.Marker({color: '#e91e63'})
               .setLngLat(d.geometry.coordinates)
               .setPopup(new mapboxgl.Popup({ offset: 20 })
-                .setHTML('<h3>' + d.properties.name  + '</h3><p>' + '</p>'));
+                .setHTML('<h3>' + d.properties.name  + '</h3>'));
             marker.addTo(this.map);
             result[d.properties.name] = marker;
             return result;
           }, {});
-          this.setState({ markers });
+          this.setState({ markers: markers, loaded: true });
         });
         
         this.props.setMap(this.map);
