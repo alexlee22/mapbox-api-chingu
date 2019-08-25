@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a1b8c72d5748f4487e93e946ed813daf",
+    "revision": "13cf53d80e527d668c0ed94705cd5dcc",
     "url": "/mapbox-api-chingu/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mapbox-api-chingu/static/js/2.11f0ace4.chunk.js"
   },
   {
-    "revision": "11eb1c9b9ddebaa2b5ff",
-    "url": "/mapbox-api-chingu/static/js/main.62c475c2.chunk.js"
+    "revision": "52ee3d45bce179bc4279",
+    "url": "/mapbox-api-chingu/static/js/main.78a4244e.chunk.js"
   },
   {
     "revision": "4eec55bbce7c555491d0",

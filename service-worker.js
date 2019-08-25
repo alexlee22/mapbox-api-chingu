@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/mapbox-api-chingu/precache-manifest.22e0e3f2a0b7be33102f778f28b40fea.js"
+  "/mapbox-api-chingu/precache-manifest.37187faa5779768a7499ac996db313dd.js"
 );
 
 self.addEventListener('message', (event) => {
