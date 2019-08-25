@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/mapbox-api-chingu/static/js/main.8e51bc6c.chunk.js",
-    "main.js.map": "/mapbox-api-chingu/static/js/main.8e51bc6c.chunk.js.map",
+    "main.js": "/mapbox-api-chingu/static/js/main.62c475c2.chunk.js",
+    "main.js.map": "/mapbox-api-chingu/static/js/main.62c475c2.chunk.js.map",
     "runtime~main.js": "/mapbox-api-chingu/static/js/runtime~main.cc882392.js",
     "runtime~main.js.map": "/mapbox-api-chingu/static/js/runtime~main.cc882392.js.map",
     "static/js/2.11f0ace4.chunk.js": "/mapbox-api-chingu/static/js/2.11f0ace4.chunk.js",
     "static/js/2.11f0ace4.chunk.js.map": "/mapbox-api-chingu/static/js/2.11f0ace4.chunk.js.map",
     "index.html": "/mapbox-api-chingu/index.html",
-    "precache-manifest.60cdd15e8b0356be0b0b8ec2dc35a2cd.js": "/mapbox-api-chingu/precache-manifest.60cdd15e8b0356be0b0b8ec2dc35a2cd.js",
+    "precache-manifest.831dc9e4082bb08b2857860b60039341.js": "/mapbox-api-chingu/precache-manifest.831dc9e4082bb08b2857860b60039341.js",
     "service-worker.js": "/mapbox-api-chingu/service-worker.js"
   }
 }
