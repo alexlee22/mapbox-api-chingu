@@ -1,68 +1,107 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# mapbox-api-chingu
 
-## Available Scripts
+![Image of Yaktocat](https://i.imgur.com/3Hl0SpM.png)
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+A simple Mapbox App showing noticeable landmarks in Sydney. Created using `create-react-app` and `mapbox-gl-js`. [Click here to view the live version.](https://alexlee22.github.io/mapbox-api-chingu/)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Features
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+- Clean Material Design UI,
+- Search and jump to navigation through toggable menu,
+- Image of each landmark (taken from GeoJSON, images from Wikipedia),
+- Easy to swap GeoJSON in the `/src/const.js` file.
 
-### `npm test`
+### Packages
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [create-react-app](https://github.com/facebook/create-react-app)
+- [mapbox-gl-js](https://docs.mapbox.com/mapbox-gl-js/api/)
+- [material-ui](https://material-ui.com/) - Google's Material Design in easy to use React components
+- [styled-components](https://www.styled-components.com/)
+- [redux](https://redux.js.org/introduction/getting-started) - cross-component state management
 
-### `npm run build`
+## Running the project
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Before running the site, ensure the following are installed and your terminal can run the following (developed on the following):
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+- `node v11.11.0`
+- `npm v6.7.0`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You will also need a Mapbox API access key. [For more info, check here](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/)
 
-### `npm run eject`
+To install the required packages:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Clone the git repo to your (Or download the files directly from Github),
+2. Navigate to the folder in terminal,
+3. Run the command `npm install` in your terminal
+4. Open the file `/src/const.js` and replace `<KEY>` on the line starting with `export const MAPBOX_KEY = ...` with your key provided from MapBox,
+5. After installed, run the command `npm run start` to run  in development mode.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+There are multiple commands to start the code, check `scrips` in the file `package.json` for the full list of commands to run. You can either run the app as ***local server** or **compile static** ready for deployment. See below for more infomation.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Build Static Files
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`npm run build`
 
-## Learn More
+This command will compile all the required files to run the site inside the folder `/build`. You can run the site using these files on a static hosting service. Below is a command for easy deploying to **GitHub Pages**.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Deploy to GH Pages
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Inside your `package.json` file on the line starting with `"homepage"`, replace `<USERNAME>` with your github username and `<GITHUB_REPO_NAME>` with the repo in which you want to host your site in.
+```
+...
+"homepage": "http://<USERNAME>.github.io/<GITHUB_REPO_NAME>",
+...
+```
 
-### Code Splitting
+Next 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Customisation
 
-### Analyzing the Bundle Size
+### GeoJSON
+```
+{
+    "type": "FeatureCollection",
+    "features": [
+        ...
+    ]
+}
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Inside features is a list of markers with their co-ordinate and some properties. See below for an example of a marker:
 
-### Making a Progressive Web App
+```
+...
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sydney Opera House",
+        "image": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/SydneyOperaHouse20182.jpg/540px-SydneyOperaHouse20182.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.2152463197708,
+          -33.8568651729163
+        ]
+      }
+    },
+...
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Properties inside of the geoJSON contains 2 important variables:
 
-### Advanced Configuration
+- `Name`: Name of the marker which will show up in the search menu and the popup,
+- `image`: source of the image for the popup (url).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Material-UI
 
-### Deployment
+Currently only colours can be changed via their theme. You can change the color of the banner and markers by changing the variable `MATERIAL_UI_COLORS.primary` in the file `/src/const.js`.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Credits
 
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Favicons from [favicon.io](https://favicon.io/emoji-favicons/),
+- Images for landmarks from their respective [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) pages,
+- List of landmarks from [Trip Savvy](https://www.tripsavvy.com/sydney-landmarks-4123601),
+- [GeoJSON editer](http://geojson.io/): very easy to use for editing GeoJSON.

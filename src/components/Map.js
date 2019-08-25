@@ -2,7 +2,7 @@ import React, { Component }  from 'react';
 import { connect } from 'react-redux';
 import { searchFilterData } from '../selector';
 import { setMap } from '../actions';
-import { MAPBOX_KEY, MAPBOX_CENTER, MAPBOX_ZOOM }  from '../const';
+import { MAPBOX_KEY, MAPBOX_CENTER, MAPBOX_ZOOM, MATERIAL_UI_COLORS }  from '../const';
 import mapboxgl from 'mapbox-gl';
 
 class Maptwo extends Component {
@@ -36,7 +36,6 @@ class Maptwo extends Component {
           return d;
         })
       }
-      
     }
     
     //Make map + assign markers
@@ -53,7 +52,7 @@ class Maptwo extends Component {
         this.map.on('load', () => {
           // For each marker,create marker on map and assign popup window
           let markers = this.props.filteredData.reduce((result, d) => {
-            var marker = new mapboxgl.Marker({color: '#e91e63'})
+            var marker = new mapboxgl.Marker({color: MATERIAL_UI_COLORS.primary})
               .setLngLat(d.geometry.coordinates)
               .setPopup(new mapboxgl.Popup({ offset: 20 })
                 .setHTML('<h3>' + d.properties.name  + '</h3> <img style="display: block; width: auto; height: auto; max-width: 200px; max-height: 200px;, " src="' + d.properties.image + '" alt="' + d.properties.name + ', image from Wikipedia">'));
