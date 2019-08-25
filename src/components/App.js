@@ -1,30 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { simpleAction, setPureData } from './actions/simpleAction';
-import { searchFilterData } from './selector'
+import { setPureData } from '../actions';
+import { searchFilterData } from '../selector'
+import { MATERIAL_UI_COLORS, geoJSON } from '../const.js'
 
-import {createMuiTheme} from '@material-ui/core/styles';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-
-//import Map from './Map';
-import Maptwo from './Maptwo';
+// Components
 import Title from './Title';
 import Menu from './Menu';
-import { geoJSON } from './const.js'
+import Map from './Map';
 
+// Material-UI theme provider
+import { createMuiTheme } from '@material-ui/core/styles';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 const theme = createMuiTheme({
   palette: {
       primary: {
-          main: '#e91e63',
+          main: MATERIAL_UI_COLORS.primary,
       },
       secondary: {
-          main: '#4dd0e1',
+          main: MATERIAL_UI_COLORS.secondary,
       },
   },
 });
 
 class App extends Component {
 
+  // Set geoJSON on load
   componentDidMount = () => {
     this.props.setPureData(geoJSON);
   }
@@ -35,7 +36,7 @@ class App extends Component {
         <MuiThemeProvider theme={theme}>
           <Title />
           <Menu />
-          <Maptwo />
+          <Map />
         </MuiThemeProvider>
       </div>
     );
@@ -43,15 +44,12 @@ class App extends Component {
 
 }
 
-//<Map />
-
 const mapStateToProps = state => ({
   ...state,
   filteredData: searchFilterData(state)
 })
 
 const mapDispatchToProps = dispatch => ({
-  simpleAction: (e) => dispatch(simpleAction(e)),
   setPureData: (e) => dispatch(setPureData(e))
 })
 

@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setUpdateSearch } from './actions/simpleAction';
-import { searchFilterData } from './selector'
+import { setUpdateSearch } from '../actions';
+import { searchFilterData } from '../selector';
 
+// Import Material-UI Components
 import { styled } from '@material-ui/styles';
-import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-//import Fade from '@material-ui/core/Fade';
 import Slide from '@material-ui/core/Slide';
 
+// Custom styling to Material UI Components
 const StyledPaper = styled(Paper)({
     position: 'absolute',
     top: '50px',
@@ -29,11 +29,11 @@ const StyledTextField = styled(TextField)({
   width: '100%'
 });
 
+
 class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: ''
     };
   };
 
@@ -54,7 +54,7 @@ class Menu extends Component {
   render() {
     
     return(
-      <Slide direction="top" in={this.props.app.showMenu} mountOnEnter unmountOnExit>
+      <Slide direction="down" in={this.props.app.showMenu} mountOnEnter unmountOnExit>
         <StyledPaper position="fixed">
           <StyledTextField
               id="search-field"
@@ -77,10 +77,7 @@ class Menu extends Component {
             </ListItem>
             }
           </List>
-          
           }
-
-          
         </StyledPaper>
       </Slide>
     )
@@ -88,8 +85,6 @@ class Menu extends Component {
 
 }
 
-//value={this.state.search}
-//https://github.com/uber/react-map-gl/blob/5.0-release/examples/viewport-animation/src/app.js
 
 const mapStateToProps = state => ({
   ...state,

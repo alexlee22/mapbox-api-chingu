@@ -1,10 +1,4 @@
-export const simpleAction = () => dispatch => {
-  dispatch({
-   type: 'SIMPLE_ACTION',
-   payload: 'result_of_simple_action'
-  })
-}
-
+// Set geoJSON on load
 export const setPureData = (payload) => dispatch => {
   dispatch({
     type: 'SET_PUREDATA',
@@ -12,6 +6,7 @@ export const setPureData = (payload) => dispatch => {
   })
 }
 
+// Hide/Show menu component
 export const setToggleMenu = (payload) => dispatch => {
   dispatch({
     type: 'SET_TOGGLEMENU',
@@ -19,6 +14,7 @@ export const setToggleMenu = (payload) => dispatch => {
   })
 }
 
+// Update search string in store
 export const setUpdateSearch = (payload) => dispatch => {
   dispatch({
     type: 'SET_UPDATESEARCH',
@@ -26,6 +22,7 @@ export const setUpdateSearch = (payload) => dispatch => {
   })
 }
 
+// Set map DOM for components to use
 export const setMap = (payload) => dispatch => {
   dispatch({
     type: 'SET_MAPBOX',

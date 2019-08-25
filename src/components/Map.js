@@ -1,21 +1,15 @@
 import React, { Component }  from 'react';
-//import ReactMapGL, { Marker } from 'react-map-gl';
 import { connect } from 'react-redux';
-import { searchFilterData } from './selector';
-import { setMap } from './actions/simpleAction';
+import { searchFilterData } from '../selector';
+import { setMap } from '../actions';
+import { MAPBOX_KEY, MAPBOX_CENTER, MAPBOX_ZOOM }  from '../const';
 import mapboxgl from 'mapbox-gl';
-
-mapboxgl.accessToken = '';
-
-const MAPBOX_CENTER = [151.20861055151923, -33.86349534679483];
-const MAPBOX_ZOOM = 14;
 
 class Maptwo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          markers: null,
-          loaded: false
+          markers: null
         }
     }   
     
@@ -40,7 +34,6 @@ class Maptwo extends Component {
             element.style.visibility = "hidden";
           }
           return d;
-          
         })
       }
       
@@ -50,6 +43,7 @@ class Maptwo extends Component {
     componentDidMount() {
         // Create map
         this.map = new mapboxgl.Map({
+          accessToken: MAPBOX_KEY,
           container: this.mapContainer,
           style: 'mapbox://styles/mapbox/dark-v9',
           center: MAPBOX_CENTER,
@@ -57,12 +51,12 @@ class Maptwo extends Component {
         });
         
         this.map.on('load', () => {
-          // Paste all marker on map when map has loaded
+          // For each marker,create marker on map and assign popup window
           let markers = this.props.filteredData.reduce((result, d) => {
             var marker = new mapboxgl.Marker({color: '#e91e63'})
               .setLngLat(d.geometry.coordinates)
               .setPopup(new mapboxgl.Popup({ offset: 20 })
-                .setHTML('<h3>' + d.properties.name  + '</h3>'));
+                .setHTML('<h3>' + d.properties.name  + '</h3> <img style="display: block; width: auto; height: auto; max-width: 200px; max-height: 200px;, " src="' + d.properties.image + '" alt="' + d.properties.name + ', image from Wikipedia">'));
             marker.addTo(this.map);
             result[d.properties.name] = marker;
             return result;
@@ -75,12 +69,12 @@ class Maptwo extends Component {
 
       render() {
         return (
-            <div 
-              style={{ height: '100vh', width: "100vw" }}
-              ref={el => this.mapContainer = el}
-              className="absolute top right left bottom"
-            >
-            </div>
+          <div 
+            style={{ height: '100vh', width: "100vw" }}
+            ref={el => this.mapContainer = el}
+            className="absolute top right left bottom"
+          >
+          </div>
         );
       }
 }
@@ -92,7 +86,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  //simpleAction: (e) => dispatch(simpleAction(e))
   setMap: (e => dispatch(setMap(e)))
 })
 
