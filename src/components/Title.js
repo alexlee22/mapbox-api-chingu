@@ -33,7 +33,7 @@ class Title extends Component {
           <AppBar position="fixed">
             <Toolbar>
               <Typography variant="h6" style={{flexGrow: 1}} >
-                Chingu-Mapbox
+                Sydney Landmarks
               </Typography>
               <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => { setToggleMenu() }}>
                 <MenuIcon />
