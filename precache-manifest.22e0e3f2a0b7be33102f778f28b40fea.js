@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dcbbbc55259c3d231a8b724cdcbf4631",
+    "revision": "a1b8c72d5748f4487e93e946ed813daf",
     "url": "/mapbox-api-chingu/index.html"
   },
   {
